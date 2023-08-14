@@ -2,7 +2,6 @@
 import '../css/selectionBox.css';
 
 const Selectionbox=()=>{
-    
 
     return(
         <select className="select">

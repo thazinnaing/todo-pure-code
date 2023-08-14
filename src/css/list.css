@@ -12,15 +12,22 @@
     flex-direction: column;
     gap:10px;
 }
+.content{
+    text-align: center;
+    padding: 15px;
+    font-weight: bold;
+
+}
 
 .todo{
     width: 100%;
-    height: 50px;
+    padding: 10px 5px;
     display: flex;
     border-radius: 10px;
     background: linear-gradient(217deg, rgba(255,0,0,.8), rgba(255,0,0,0) 70.71%),linear-gradient(127deg, rgba(0,255,0,.8), rgba(0,255,0,0) 70.71%),linear-gradient(336deg, rgba(0,0,255,.8), rgba(0,0,255,0) 70.71%);
     
 }
+
 .text{
     width: 84%;
     font-size: 17px;
