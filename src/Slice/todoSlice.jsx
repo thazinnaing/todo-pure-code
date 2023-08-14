@@ -1,8 +1,8 @@
-import { createSlice,createAsyncThunk } from "@reduxjs/toolkit";
+import { createSlice,createAsyncThunk, nanoid } from "@reduxjs/toolkit";
 import axios from "axios";
 
-
 const TODOS_URL = "https://jsonplaceholder.typicode.com/todos";
+
 const initialState = {
     todos: [],
     completeStatus: "All",
@@ -14,6 +14,19 @@ export const fetchTodos = createAsyncThunk("todos/fetchTodos", async()=>{
     try{
         const response = await axios.get(TODOS_URL);
         return [...response.data]
+    }
+    catch(error){
+        return error.message;
+    }
+})
+
+export const addNewTodo = createAsyncThunk("todos/addNewTodo", async(initialTodo)=>{
+    const newTodo={title: initialTodo}
+    try{
+        const response = await axios.post(TODOS_URL, newTodo)
+        console.log("response data", response.data)
+        return response.data;
+
     }
     catch(error){
         return error.message;
@@ -34,13 +47,22 @@ const todoSlice= createSlice({
             state.status = "loading";
         })
         .addCase(fetchTodos.fulfilled, (state, action)=>{
-            console.log("action.payload", action.payload)
             state.status = "succeeded";
-            state.todos = action.payload;
+            const loadedPost = action.payload.map(todo=>{
+                todo.todoId = nanoid();
+                todo.date = new Date().toISOString();
+                return todo;
+            })
+            state.todos = loadedPost;
         })
         .addCase(fetchTodos.rejected, (state, action)=>{
             state.status = "failed";
             state.error = action.error.message;
+        })
+        .addCase(addNewTodo.fulfilled, (state, action)=>{
+            action.payload.todoId = nanoid();
+            action.payload.date = new Date().toISOString();
+            state.todos.push(action.payload);
         })
 
     }

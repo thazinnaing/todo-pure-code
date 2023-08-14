@@ -34,7 +34,10 @@ const List=()=>{
 
     console.log("todos", todos);
     console.log("filtered todos", filterTodos);
-
+    
+    const showTodos = filterTodos.slice().sort((a,b)=> b.date.localeCompare(a.date))
+    console.log("showtodos", showTodos)
+    
     let content;
     if(status === "loading"){
         content = <p className='content'>LOADING... </p>
@@ -43,12 +46,12 @@ const List=()=>{
         content = <p className='content'>{error}</p>
     }
     else if(status === "succeeded"){
-        content= filterTodos?.map((todo)=>{
-                    return(<ListItem key={todo.id} todo={todo}/>)
+        content= showTodos?.map((todo)=>{
+            console.log(todo)
+                    return(<ListItem key={todo.todoId} todo={todo}/>)
                 })
     }
 
-  
     return(
         <div className="todo-container">
             <div className="todo-content">
