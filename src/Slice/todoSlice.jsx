@@ -33,6 +33,18 @@ export const addNewTodo = createAsyncThunk("todos/addNewTodo", async(initialTodo
     }
 })
 
+export const deleteTodo = createAsyncThunk("todos/deleteTodo", async(initialTodo)=>{
+    const {todoId} = initialTodo;
+    try{
+        const response = await axios.delete(`${TODOS_URL}/${todoId}`);
+        if(response?.status === 200) return initialTodo;
+        return `${response?.status}: ${response?.statusText}`;
+    }
+    catch(error){
+        return error.message;
+    }
+})
+
 const todoSlice= createSlice({
     name: "todos",
     initialState,
@@ -64,9 +76,17 @@ const todoSlice= createSlice({
             action.payload.date = new Date().toISOString();
             state.todos.push(action.payload);
         })
-
+        .addCase(deleteTodo.fulfilled, (state, action)=>{
+            if(!action.payload?.todoId){
+                console.log("Delete could not complete");
+                console.log(action.payload);
+                return;
+            }
+            const {todoId}= action.payload;
+            const todos = state.todos.filter(todo=> todo.todoId !== todoId);
+            state.todos = todos;
+        })
     }
-
 })
 
 export const selectAllTodos= (state) => state.todos.todos;

@@ -5,9 +5,16 @@ import TickIcon from "../svg/tick.svg";
 import TrashIcon from "../svg/trash.svg";
 import DoublecheckIcon from "../svg/double-check.svg";
 import EditIcon from '../svg/edit.svg';
+import { useDispatch } from "react-redux";
+import { deleteTodo } from "../Slice/todoSlice";
 
 const ListItem=({todo})=>{
+    const dispatch=useDispatch();
    
+    const onClickDelete=()=>{
+        dispatch(deleteTodo({todoId:todo?.todoId})).unwrap();
+    }
+
     return(
         <div className="todo">
                 <div className={`text ${todo.completed ? 'line' : ''}`}>{todo?.title}</div>
@@ -21,7 +28,7 @@ const ListItem=({todo})=>{
                     />
                 </div>
                 <div className="trash">
-                    <img src={TrashIcon} alt="Trash"
+                    <img src={TrashIcon} alt="Trash" onClick={onClickDelete}
                     />
                 </div>
             </div>

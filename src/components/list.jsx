@@ -33,11 +33,10 @@ const List=()=>{
     },[todos, completeAction])
 
     console.log("todos", todos);
-    console.log("filtered todos", filterTodos);
+    
     
     const showTodos = filterTodos.slice().sort((a,b)=> b.date.localeCompare(a.date))
-    console.log("showtodos", showTodos)
-    
+    console.log('showTodos', showTodos)
     let content;
     if(status === "loading"){
         content = <p className='content'>LOADING... </p>
@@ -47,7 +46,6 @@ const List=()=>{
     }
     else if(status === "succeeded"){
         content= showTodos?.map((todo)=>{
-            console.log(todo)
                     return(<ListItem key={todo.todoId} todo={todo}/>)
                 })
     }
