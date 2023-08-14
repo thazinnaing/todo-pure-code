@@ -23,7 +23,11 @@ export const fetchTodos = createAsyncThunk("todos/fetchTodos", async()=>{
 const todoSlice= createSlice({
     name: "todos",
     initialState,
-    reducers: {},
+    reducers: {
+        updateCompletedStatus(state, action){
+            state.completeStatus = action.payload;
+        }
+    },
     extraReducers(builder){
         builder
         .addCase(fetchTodos.pending, (state)=>{
@@ -48,4 +52,5 @@ export const getTodoStatus = (state) => state.todos.status;
 export const getTodoError = (state) => state.todos.error;
 export const getCompleteStatus = (state) => state.todos.completeStatus;
 
+export const {updateCompletedStatus} = todoSlice.actions;
 export default todoSlice.reducer;
