@@ -1,0 +1,77 @@
+
+
+.todo-container{
+    width: 100%;
+    display: flex;
+    gap: 10px;
+}
+.todo-content{
+    width: 540px;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    gap:10px;
+}
+
+.todo{
+    width: 100%;
+    height: 50px;
+    display: flex;
+    border-radius: 10px;
+    background: linear-gradient(217deg, rgba(255,0,0,.8), rgba(255,0,0,0) 70.71%),linear-gradient(127deg, rgba(0,255,0,.8), rgba(0,255,0,0) 70.71%),linear-gradient(336deg, rgba(0,0,255,.8), rgba(0,0,255,0) 70.71%);
+    
+}
+.text{
+    width: 84%;
+    font-size: 17px;
+    font-weight: bold;
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+    display: flex;
+    align-items: center;
+    padding: 0 10px 0 10px;
+    
+}
+.line{
+    text-decoration:line-through;
+}
+.tick,.trash,.edit{
+    width: 8%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.trash img,.tick img,.edit img{
+    width: 20px;
+    height: 20px;
+}
+.trash{
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+}
+@media screen and (max-width: 840px){
+    .todo-content{
+        width: 490px;
+    }
+}
+@media screen and (max-width: 640px){
+    .todo-container{
+        padding: 0 7px;
+    }
+    .todo-content{
+        width: 100%;
+    }
+    .text{
+        font-size: 13px;
+    }
+    .tick,.trash,.edit{
+        width: 10%;
+    }
+    .trash img,.tick img,.edit img{
+        width: 13px;
+        height: 13px;
+    }
+    
+
+
+}

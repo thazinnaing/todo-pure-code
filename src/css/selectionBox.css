@@ -1,0 +1,24 @@
+.select{
+    width: 110px;
+    height: 50px;
+    background-color: rgb(217,23,61);
+    border:none;
+    outline: none;
+    border-radius: 8px;
+    font-size: 14px;
+}
+option{
+    background-color: rgb(217,23,61);
+    font-size: 14px;
+}
+@media screen and (max-width: 480px){
+   .select{
+    width: 70px;
+    font-size: 10px;
+   }
+   option{
+    width: 70px;
+    background-color: rgb(217,23,61);
+    font-size: 10px;
+   }
+}
